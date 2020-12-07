@@ -1,0 +1,20 @@
+<table class='table'>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Date of birth</th>
+      <th>Poste</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor='let p of players'>
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.dateOfBirth}}</td>
+      <td>{{p.poste}}</td>
+      <td><img src={{p.image}} height="50px" width="50px"></td>
+      <td>
+        <button class='btn btn-danger' (click)='delete(p.id)'>delete</button>
+      </td>
+    </tr>
+  </table>

@@ -1,0 +1,83 @@
+<div class="hero overlay" style="background-image: url('assets/images/bg_3.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9 mx-auto text-center">
+        <h1 class="text-white">Admin</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">User</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">Matches</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+      aria-selected="false">Players</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="stadium-tab" data-toggle="tab" href="#stadium" role="tab" aria-controls="stadium"
+      aria-selected="false">Stadiums</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <table class='table'>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor='let u of users'>
+        <td>{{u._id}}</td>
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+        <td>{{u.email}}</td>
+        <td>
+          <button class='btn btn-danger' (click)='delete(u._id)'>delete</button>
+          <button class='btn btn-danger' (click)='edit(u._id)'>edit</button>
+          <button class='btn btn-danger' (click)='display(u._id)'>display</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <table class='table'>
+      <tr>
+        <th>ID</th>
+        <th>Team One</th>
+        <th>score</th>
+        <th>Team two</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor='let m of matches'>
+        <td>{{m._id}}</td>
+        <td>{{m.teamOne}}</td>
+        <td>{{m.scoreOne}}-{{m.scoreTwo}}</td>
+        <td>{{m.teamTwo}}</td>
+        <td>
+          <button class='btn btn-danger' (click)='delete(m._id)'>delete</button>
+          <button class='btn btn-danger' (click)='edit(m._id)'>edit</button>
+          <button class='btn btn-danger' (click)='display(m._id)'>display</button>
+        </td>
+      </tr>
+    </table>
+  
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <app-admin-players></app-admin-players>
+  </div>
+  <div class="tab-pane fade" id="stadium" role="tabpanel" aria-labelledby="stadium-tab">
+    <div *ngFor='let s of stadiums'>
+      <app-stadium [s]='s' (newStadiums)='updateStadiums($event)'></app-stadium>
+    </div>
+  </div>
+</div>
